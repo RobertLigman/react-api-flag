@@ -1,0 +1,11 @@
+.Country {
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 0 10px;
+    border: 1px solid #333;
+}
+
+.img__container .img {
+    width: 100%;
+}

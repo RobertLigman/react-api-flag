@@ -1,8 +1,14 @@
+import "./Country.css";
 const Country = (props) => (
-  <div>
-    <h3>{props.name}</h3>
-    <p>{props.capital}</p>
-    <img src={props.flag} />
+  <div className="Country">
+    <h3>Country: {props.name}</h3>
+    <p>Capital: {props.capital}</p>
+    <div className="img__container">
+      <img className="img" src={props.flag} alt={props.name} />
+    </div>
+    <p>
+      Currency: {props.currencySymbol} {props.currencyName}
+    </p>
   </div>
 );
 export default Country;

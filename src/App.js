@@ -10,9 +10,9 @@ function App() {
   useEffect(() => {
     axios.get("https://restcountries.eu/rest/v2/all").then((res) => {
       setflagApi(res.data);
+      setFlagsToRender(res.data);
       console.log(res.data);
     });
-    setFlagsToRender(flagApi);
   }, []);
 
   const startSearching = (inputValue) => {
@@ -20,24 +20,26 @@ function App() {
     const newFlagApi = flagApi.filter((item) =>
       item.name.toLowerCase().includes(inputValue.toLowerCase())
     );
-    if (newFlagApi.length === 0) {
-      console.log("empty");
-    }
+
     setFlagsToRender(newFlagApi);
   };
 
   return (
     <div className="App">
       <SearchBar clicked={startSearching} />
-      {flagsToRender &&
-        flagsToRender.map((item) => (
-          <Country
-            key={item.name}
-            name={item.name}
-            capital={item.capital}
-            flag={item.flag}
-          />
-        ))}
+      <div className="Flag-container">
+        {flagsToRender &&
+          flagsToRender.map((item) => (
+            <Country
+              key={item.name}
+              name={item.name}
+              capital={item.capital}
+              flag={item.flag}
+              currencyName={item.currencies[0].name}
+              currencySymbol={item.currencies[0].symbol}
+            />
+          ))}
+      </div>
     </div>
   );
 }
