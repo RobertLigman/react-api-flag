@@ -3,10 +3,11 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import Country from "./components/Country";
 import SearchBar from "./Containers/Searchbar";
-
+import Loading from "./components//Loading";
 function App() {
   const [flagApi, setflagApi] = useState();
   const [flagsToRender, setFlagsToRender] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     axios
       .get("https://restcountries.eu/rest/v2/all")
@@ -14,6 +15,7 @@ function App() {
         setflagApi(res.data);
         setFlagsToRender(res.data);
         console.log(res.data);
+        setIsLoading(true);
       })
       .catch((err) => {
         console.log(err);
@@ -32,6 +34,7 @@ function App() {
   return (
     <div className="App">
       <SearchBar clicked={startSearching} />
+      {!isLoading && <Loading />}
       <div className="Flag-container">
         {flagsToRender &&
           flagsToRender.map((item) => (
