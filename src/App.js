@@ -8,11 +8,16 @@ function App() {
   const [flagApi, setflagApi] = useState();
   const [flagsToRender, setFlagsToRender] = useState();
   useEffect(() => {
-    axios.get("https://restcountries.eu/rest/v2/all").then((res) => {
-      setflagApi(res.data);
-      setFlagsToRender(res.data);
-      console.log(res.data);
-    });
+    axios
+      .get("https://restcountries.eu/rest/v2/all")
+      .then((res) => {
+        setflagApi(res.data);
+        setFlagsToRender(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   const startSearching = (inputValue) => {
