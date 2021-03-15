@@ -1,9 +1,9 @@
 * {
     box-sizing: border-box;
+    margin: 0;
 }
 
 body {
-    margin-top: 100px;
     background-color: #137b85;
     color: #fff;
     text-align: center;

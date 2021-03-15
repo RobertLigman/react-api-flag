@@ -7,7 +7,7 @@ import Loading from "./components//Loading";
 function App() {
   const [flagApi, setflagApi] = useState();
   const [flagsToRender, setFlagsToRender] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     axios
       .get("https://restcountries.eu/rest/v2/all")
@@ -15,7 +15,7 @@ function App() {
         setflagApi(res.data);
         setFlagsToRender(res.data);
         console.log(res.data);
-        setIsLoading(true);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -27,14 +27,15 @@ function App() {
     const newFlagApi = flagApi.filter((item) =>
       item.name.toLowerCase().includes(inputValue.toLowerCase())
     );
+    if (newFlagApi.length > 0) return setFlagsToRender(newFlagApi);
 
-    setFlagsToRender(newFlagApi);
+    setFlagsToRender(null);
   };
 
   return (
     <div className="App">
       <SearchBar clicked={startSearching} />
-      {!isLoading && <Loading />}
+      {isLoading && <Loading />}
       <div className="Flag-container">
         {flagsToRender &&
           flagsToRender.map((item) => (
@@ -47,6 +48,9 @@ function App() {
               currencySymbol={item.currencies[0].symbol}
             />
           ))}
+        {!isLoading && !flagsToRender && (
+          <h1 className="main-title">Brak wyników</h1>
+        )}
       </div>
     </div>
   );

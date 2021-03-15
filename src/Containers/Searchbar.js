@@ -3,7 +3,7 @@ import "./Searchbar.css";
 function SearchBar(props) {
   const [searchValue, setSearchValue] = useState("");
   const handleChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setSearchValue(e.target.value);
   };
   return (
