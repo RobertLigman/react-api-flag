@@ -1,0 +1,18 @@
+.searchbar-form {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin: 20px auto;
+    height: 30px;
+}
+
+.searchbar-input {
+    border-radius: 10px 0 0 10px;
+    background-color: #eee;
+    border: none;
+    padding: 0 15px;
+}
+
+.searchbar-input:focus {
+    outline: 1px solid rgb(6, 71, 156);
+}
